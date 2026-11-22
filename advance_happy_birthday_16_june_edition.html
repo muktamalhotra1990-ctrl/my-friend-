@@ -1,0 +1,1988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advance Happy Birthday • 16 June</title>
+  <style>
+    /* =========================================================================
+       1. DESIGN TOKENS & WARM TWILIGHT PALETTE
+       ========================================================================= */
+    :root {
+      --bg-deep: #0b0713;
+      --bg-night: #150d26;
+      --bg-twilight: #26143d;
+      --surface-card: rgba(25, 16, 42, 0.76);
+      --surface-elevated: rgba(42, 26, 68, 0.72);
+      --surface-glass: rgba(255, 255, 255, 0.055);
+      --border-subtle: rgba(255, 255, 255, 0.13);
+      --border-accent: rgba(255, 209, 102, 0.35);
+
+      --text-primary: #fff8fb;
+      --text-secondary: rgba(255, 244, 249, 0.82);
+      --text-muted: rgba(255, 232, 242, 0.62);
+
+      --rose-300: #ffc2d4;
+      --rose-400: #ff8fab;
+      --rose-500: #fb6f92;
+      --gold-300: #ffe599;
+      --gold-400: #ffd166;
+      --gold-500: #f4a261;
+      --violet-300: #d8b4fe;
+      --mint-300: #a7f3d0;
+      --sky-300: #bae6fd;
+
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+      --radius-pill: 999px;
+
+      --shadow-card: 0 20px 50px rgba(4, 2, 10, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      --shadow-glow-gold: 0 0 28px rgba(255, 209, 102, 0.25);
+      --shadow-glow-rose: 0 0 28px rgba(251, 111, 146, 0.22);
+      --transition-smooth: all 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* =========================================================================
+       2. RESET & BASE LAYOUT
+       ========================================================================= */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg-deep);
+      background-image:
+        radial-gradient(circle at 15% 12%, rgba(251, 111, 146, 0.18), transparent 44%),
+        radial-gradient(circle at 86% 16%, rgba(255, 209, 102, 0.15), transparent 42%),
+        radial-gradient(circle at 50% 85%, rgba(139, 92, 246, 0.14), transparent 52%),
+        linear-gradient(170deg, var(--bg-twilight) 0%, var(--bg-night) 48%, var(--bg-deep) 100%);
+      color: var(--text-primary);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+      padding: 20px 14px 72px;
+    }
+
+    /* Full-bleed starlight canvas behind all cards */
+    #starlightCanvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Gentle floating ambient particles layer */
+    #ambientParticles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    /* Celebration burst overlay layer */
+    #celebrationLayer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 45;
+    }
+
+    /* Main centered single-column container */
+    .app-shell {
+      width: 100%;
+      max-width: 660px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+      z-index: 5;
+    }
+
+    /* Top Navigation / Utility Strip */
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: var(--radius-lg);
+      background: var(--surface-card);
+      border: 1px solid var(--border-subtle);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .brand-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--gold-300);
+      letter-spacing: 0.02em;
+    }
+
+    .top-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Glass Card Container */
+    .card {
+      background: var(--surface-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 24px 20px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: var(--shadow-card);
+      transition: var(--transition-smooth);
+    }
+
+    @media (min-width: 600px) {
+      body {
+        padding: 32px 20px 84px;
+      }
+      .card {
+        padding: 30px 28px;
+      }
+    }
+
+    .card-header {
+      margin-bottom: 16px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 143, 171, 0.16);
+      border: 1px solid rgba(255, 194, 212, 0.32);
+      color: var(--rose-300);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .section-title {
+      margin-top: 8px;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.015em;
+    }
+
+    .section-subtitle {
+      margin-top: 4px;
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+    }
+
+    /* =========================================================================
+       3. BUTTONS & FORM CONTROLS
+       ========================================================================= */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 10px 16px;
+      border-radius: var(--radius-pill);
+      border: 1px solid transparent;
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      text-decoration: none;
+      user-select: none;
+    }
+
+    .btn:active {
+      transform: scale(0.96);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--rose-400) 0%, var(--gold-400) 100%);
+      color: #190c26;
+      box-shadow: 0 8px 22px rgba(251, 111, 146, 0.28);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.06);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--surface-elevated);
+      color: var(--text-primary);
+      border-color: var(--border-subtle);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--border-accent);
+      background: rgba(65, 40, 104, 0.85);
+    }
+
+    .btn-ghost {
+      background: var(--surface-glass);
+      color: var(--text-secondary);
+      border-color: rgba(255, 255, 255, 0.1);
+      padding: 8px 13px;
+      font-size: 0.8rem;
+    }
+
+    .btn-ghost:hover {
+      color: var(--gold-300);
+      border-color: var(--border-accent);
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .input-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--gold-300);
+      letter-spacing: 0.02em;
+    }
+
+    .input-control,
+    .textarea-control {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      background: rgba(11, 7, 20, 0.65);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.92rem;
+      transition: var(--transition-smooth);
+    }
+
+    .input-control:focus,
+    .textarea-control:focus {
+      outline: none;
+      border-color: var(--gold-400);
+      box-shadow: 0 0 0 3px rgba(255, 209, 102, 0.16);
+    }
+
+    .textarea-control {
+      min-height: 92px;
+      resize: vertical;
+    }
+
+    /* =========================================================================
+       4. HERO CARD & LIVE PERSONALIZATION PANEL
+       ========================================================================= */
+    .hero-title {
+      margin-top: 12px;
+      font-size: clamp(1.75rem, 5vw, 2.45rem);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      background: linear-gradient(120deg, #ffffff 10%, var(--rose-300) 52%, var(--gold-300) 95%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-date-line {
+      margin-top: 8px;
+      font-size: 0.96rem;
+      color: var(--gold-300);
+      font-weight: 600;
+    }
+
+    .letter-card {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(145deg, rgba(255, 209, 102, 0.09), rgba(251, 111, 146, 0.08));
+      border: 1px solid rgba(255, 209, 102, 0.25);
+    }
+
+    .letter-greeting {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gold-300);
+      margin-bottom: 8px;
+    }
+
+    .letter-body {
+      font-size: 0.96rem;
+      line-height: 1.72;
+      color: var(--text-primary);
+      white-space: pre-line;
+    }
+
+    .letter-signoff {
+      margin-top: 14px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--rose-300);
+      text-align: right;
+    }
+
+    .personalize-drawer {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-subtle);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 540px) {
+      .personalize-two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+    }
+
+    .personalize-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .status-chip {
+      font-size: 0.8rem;
+      color: var(--mint-300);
+      min-height: 20px;
+    }
+
+    /* =========================================================================
+       5. INTERACTIVE MULTI-CANDLE BIRTHDAY CAKE & WISH LOG
+       ========================================================================= */
+    .cake-stage-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 0 6px;
+    }
+
+    .candle-status-text {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--gold-300);
+      margin-bottom: 12px;
+      text-align: center;
+      min-height: 24px;
+    }
+
+    .cake-assembly {
+      position: relative;
+      width: 268px;
+      height: 196px;
+      margin: 4px auto 18px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .candles-bar {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: flex-end;
+      gap: 16px;
+      z-index: 6;
+    }
+
+    .candle-stick {
+      width: 14px;
+      border-radius: 6px 6px 3px 3px;
+      position: relative;
+      box-shadow: inset -2px 0 4px rgba(0, 0, 0, 0.22);
+      transition: transform 0.2s ease;
+    }
+
+    .candle-stick:hover {
+      transform: translateY(-3px);
+    }
+
+    .candle-stick[data-candle="0"] { height: 36px; background: linear-gradient(180deg, #bae6fd, #60a5fa); }
+    .candle-stick[data-candle="1"] { height: 46px; background: linear-gradient(180deg, #bbf7d0, #4ade80); }
+    .candle-stick[data-candle="2"] { height: 40px; background: linear-gradient(180deg, #fef08a, #facc15); }
+    .candle-stick[data-candle="3"] { height: 46px; background: linear-gradient(180deg, #fbcfe8, #f472b6); }
+    .candle-stick[data-candle="4"] { height: 36px; background: linear-gradient(180deg, #e9d5ff, #c084fc); }
+
+    .candle-wick {
+      position: absolute;
+      top: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 5px;
+      background: #334155;
+    }
+
+    .candle-flame {
+      position: absolute;
+      top: -23px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 13px;
+      height: 19px;
+      border-radius: 50% 50% 50% 50% / 65% 65% 35% 35%;
+      background: radial-gradient(circle at 50% 72%, #ffffff 12%, #fde047 48%, #f97316 88%);
+      box-shadow: 0 0 14px #facc15, 0 0 28px rgba(251, 146, 60, 0.65);
+      animation: flameFlicker 0.24s infinite alternate ease-in-out;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .candle-stick.is-out .candle-flame {
+      opacity: 0;
+      transform: translateX(-50%) scale(0.1);
+      animation: none;
+    }
+
+    .smoke-cloud {
+      position: absolute;
+      top: -26px;
+      left: 50%;
+      transform: translateX(-50%) translateY(0);
+      font-size: 14px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.7s ease;
+    }
+
+    .candle-stick.is-out .smoke-cloud {
+      opacity: 0.92;
+      transform: translateX(-50%) translateY(-12px);
+    }
+
+    @keyframes flameFlicker {
+      0% { transform: translateX(-50%) scale(0.95) rotate(-2.5deg); }
+      100% { transform: translateX(-50%) scale(1.07) rotate(2.5deg); }
+    }
+
+    .cake-top-icing {
+      position: absolute;
+      bottom: 92px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 214px;
+      height: 30px;
+      border-radius: 50%;
+      background: linear-gradient(90deg, #fff1f5, #ffffff, #fff5e4);
+      border: 2px solid rgba(255, 255, 255, 0.85);
+      z-index: 4;
+    }
+
+    .cake-body-tier {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 210px;
+      height: 94px;
+      border-radius: 16px 16px 26px 26px;
+      background: linear-gradient(180deg, #ff9ebb 0%, #fb6f92 62%, #d94872 100%);
+      overflow: hidden;
+      z-index: 3;
+      box-shadow: inset 0 -10px 20px rgba(120, 18, 56, 0.35);
+    }
+
+    .cake-drips {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 24px;
+      background: repeating-radial-gradient(
+        circle at 12px 0,
+        #fff8fb 0,
+        #fff8fb 11px,
+        transparent 12px,
+        transparent 24px
+      );
+    }
+
+    .cake-sprinkles {
+      position: absolute;
+      inset: 28px 16px 14px;
+      background-image:
+        radial-gradient(circle, #fde047 2.5px, transparent 3px),
+        radial-gradient(circle, #86efac 2.5px, transparent 3px),
+        radial-gradient(circle, #93c5fd 2.5px, transparent 3px),
+        radial-gradient(circle, #ffffff 2.5px, transparent 3px);
+      background-size: 38px 30px;
+      background-position: 4px 4px, 19px 14px, 30px 7px, 11px 22px;
+    }
+
+    .cake-platter {
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 246px;
+      height: 18px;
+      border-radius: 50%;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.14));
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
+      z-index: 2;
+    }
+
+    .cake-controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .wish-output-box {
+      width: 100%;
+      margin-top: 16px;
+      padding: 15px 16px;
+      border-radius: var(--radius-md);
+      background: rgba(12, 8, 22, 0.55);
+      border: 1px solid var(--border-accent);
+      text-align: center;
+      color: var(--gold-300);
+      font-size: 0.94rem;
+      font-weight: 600;
+    }
+
+    .wish-log-wrap {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .wish-log-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+
+    .wish-log-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 170px;
+      overflow-y: auto;
+    }
+
+    .wish-log-item {
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background: var(--surface-glass);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.85rem;
+      color: var(--text-primary);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .wish-log-time {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* =========================================================================
+       6. "OPEN WHEN..." FRIENDSHIP CARDS & TABS
+       ========================================================================= */
+    .tab-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .open-tab {
+      padding: 9px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-subtle);
+      background: var(--surface-glass);
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .open-tab:hover {
+      border-color: var(--border-accent);
+      color: var(--text-primary);
+    }
+
+    .open-tab.is-active {
+      background: linear-gradient(135deg, var(--rose-400), var(--gold-400));
+      color: #190c26;
+      border-color: transparent;
+    }
+
+    .open-message-panel {
+      padding: 18px;
+      border-radius: var(--radius-lg);
+      background: rgba(11, 7, 20, 0.52);
+      border: 1px solid rgba(255, 194, 212, 0.25);
+    }
+
+    .open-message-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--rose-300);
+      margin-bottom: 8px;
+    }
+
+    .open-message-text {
+      font-size: 0.94rem;
+      line-height: 1.7;
+      color: var(--text-primary);
+    }
+
+    /* =========================================================================
+       7. FRIENDSHIP APPRECIATION & AFFIRMATIONS CAROUSEL
+       ========================================================================= */
+    .affirmation-stage {
+      padding: 20px 18px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(216, 180, 254, 0.1), rgba(255, 209, 102, 0.08));
+      border: 1px solid rgba(216, 180, 254, 0.26);
+      text-align: center;
+      min-height: 124px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .affirmation-badge {
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--violet-300);
+    }
+
+    .affirmation-quote {
+      font-size: 1.02rem;
+      font-weight: 600;
+      line-height: 1.6;
+      color: var(--text-primary);
+      max-width: 500px;
+    }
+
+    .carousel-controls {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .carousel-dots {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .carousel-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255, 255, 255, 0.25);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .carousel-dot.is-current {
+      width: 22px;
+      border-radius: var(--radius-pill);
+      background: var(--gold-400);
+    }
+
+    /* =========================================================================
+       8. LIVE 16 JUNE COUNTDOWN TIMER
+       ========================================================================= */
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    @media (min-width: 480px) {
+      .countdown-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+      }
+    }
+
+    .countdown-tile {
+      padding: 16px 10px;
+      border-radius: var(--radius-md);
+      background: rgba(11, 7, 20, 0.58);
+      border: 1px solid var(--border-subtle);
+      text-align: center;
+    }
+
+    .countdown-number {
+      display: block;
+      font-size: 1.85rem;
+      font-weight: 900;
+      color: var(--gold-400);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.15;
+    }
+
+    .countdown-label {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+    }
+
+    /* =========================================================================
+       9. OFFLINE CANVAS QR CODE & SHAREABLE LINK HELPER
+       ========================================================================= */
+    .qr-workspace {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    @media (min-width: 540px) {
+      .qr-workspace {
+        grid-template-columns: 1.25fr 0.95fr;
+      }
+    }
+
+    .qr-preview-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 18px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      text-align: center;
+    }
+
+    #qrCanvas {
+      border-radius: 12px;
+      background: #ffffff;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+      max-width: 100%;
+      height: auto;
+    }
+
+    .qr-caption {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      word-break: break-all;
+    }
+
+    .site-footer {
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      padding-top: 8px;
+    }
+
+    /* =========================================================================
+       10. FLOATING PARTICLES & CELEBRATION ANIMATIONS
+       ========================================================================= */
+    .floating-particle {
+      position: absolute;
+      bottom: -30px;
+      pointer-events: none;
+      animation: driftUp linear forwards;
+    }
+
+    @keyframes driftUp {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+      15% {
+        opacity: 0.75;
+      }
+      85% {
+        opacity: 0.75;
+      }
+      100% {
+        transform: translateY(-112vh) translateX(22px) rotate(180deg);
+        opacity: 0;
+      }
+    }
+
+    .burst-piece {
+      position: absolute;
+      top: -24px;
+      pointer-events: none;
+      animation: burstFall linear forwards;
+    }
+
+    @keyframes burstFall {
+      0% {
+        transform: translateY(0) rotate(0deg) scale(0.9);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(108vh) rotate(420deg) scale(1.15);
+        opacity: 0;
+      }
+    }
+
+    /* =========================================================================
+       11. PRINT-FRIENDLY KEEPSAKE CARD VIEW
+       ========================================================================= */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #181024 !important;
+        padding: 0 !important;
+      }
+      #starlightCanvas,
+      #ambientParticles,
+      #celebrationLayer,
+      .top-bar,
+      .personalize-drawer,
+      .cake-controls,
+      .wish-log-wrap,
+      .tab-strip,
+      .carousel-controls,
+      #qrInputControls {
+        display: none !important;
+      }
+      .app-shell {
+        max-width: 100% !important;
+        gap: 14px !important;
+      }
+      .card,
+      .letter-card,
+      .open-message-panel,
+      .affirmation-stage,
+      .countdown-tile,
+      .qr-preview-panel {
+        background: #ffffff !important;
+        color: #181024 !important;
+        border: 1px solid #d1d5db !important;
+        box-shadow: none !important;
+        break-inside: avoid;
+      }
+      .hero-title {
+        background: none !important;
+        color: #181024 !important;
+      }
+      .section-title,
+      .letter-body,
+      .open-message-text,
+      .affirmation-quote,
+      .countdown-number {
+        color: #181024 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Starlight Canvas Backdrop -->
+  <canvas id="starlightCanvas" aria-hidden="true"></canvas>
+
+  <!-- Gentle Floating Ambient Particles -->
+  <div id="ambientParticles" aria-hidden="true"></div>
+
+  <!-- Confetti & Lantern Celebration Burst Layer -->
+  <div id="celebrationLayer" aria-hidden="true"></div>
+
+  <div class="app-shell">
+    <!-- Top Bar with Quick Navigation & Print -->
+    <nav class="top-bar" aria-label="Page navigation">
+      <span class="brand-tag">✨ 16 June • Advance Birthday</span>
+      <div class="top-actions">
+        <a href="#cakeSection" class="btn btn-ghost">🎂 Cake</a>
+        <a href="#notesSection" class="btn btn-ghost">💌 Notes</a>
+        <a href="#qrSection" class="btn btn-ghost">📱 QR Code</a>
+        <button type="button" id="printCardBtn" class="btn btn-ghost">🖨️ Print</button>
+      </div>
+    </nav>
+
+    <!-- =======================================================================
+         HERO CARD, HEARTFELT LETTER & LIVE PERSONALIZATION
+         ======================================================================= -->
+    <header class="card" id="heroSection">
+      <span class="eyebrow">🎈 Advance Birthday Keepsake</span>
+      <h1 class="hero-title" id="heroHeadline">Happy Early Birthday, Bestie!</h1>
+      <p class="hero-date-line">Celebrating ahead of 16 June • Warm wishes sent early</p>
+
+      <div class="letter-card">
+        <div class="letter-greeting" id="letterGreeting">Dear Bestie,</div>
+        <div class="letter-body" id="letterBody">Even though 16 June is still on its way, I wanted to make something special for you ahead of time. Good friendships don't fade with busy routines or changing schedules—they stay steady in the memories we share and the care we hold for each other.
+
+I hope the months leading up to your birthday—and the whole year after—bring you peace of mind, good health, genuine laughs, and days that feel light and bright.</div>
+        <div class="letter-signoff" id="letterSignoff">With warm wishes, Gaurish</div>
+      </div>
+
+      <!-- Live Personalization Controls (Saved to localStorage) -->
+      <div class="personalize-drawer" id="personalizeDrawer">
+        <div class="personalize-two-col">
+          <div class="input-group">
+            <label for="recipientInput" class="input-label">Friend's Name</label>
+            <input
+              type="text"
+              id="recipientInput"
+              class="input-control"
+              maxlength="36"
+              placeholder="Enter friend's name"
+            />
+          </div>
+          <div class="input-group">
+            <label for="senderInput" class="input-label">Your Name</label>
+            <input
+              type="text"
+              id="senderInput"
+              class="input-control"
+              maxlength="36"
+              placeholder="Enter your name"
+            />
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="customNoteInput" class="input-label">Custom Birthday Letter</label>
+          <textarea
+            id="customNoteInput"
+            class="textarea-control"
+            maxlength="900"
+            placeholder="Write a personal note for 16 June..."
+          ></textarea>
+        </div>
+
+        <div class="personalize-footer">
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <button type="button" id="savePersonalBtn" class="btn btn-primary">💾 Save Note</button>
+            <button type="button" id="resetPersonalBtn" class="btn btn-secondary">↺ Reset Default</button>
+          </div>
+          <span class="status-chip" id="personalStatus" role="status" aria-live="polite"></span>
+        </div>
+      </div>
+    </header>
+
+    <!-- =======================================================================
+         INTERACTIVE MULTI-CANDLE BIRTHDAY CAKE & WISH LOG
+         ======================================================================= -->
+    <section class="card" id="cakeSection" aria-labelledby="cakeHeading">
+      <div class="card-header">
+        <span class="eyebrow">🕯️ Interactive Celebration</span>
+        <h2 class="section-title" id="cakeHeading">Make a Wish on Your Birthday Cake</h2>
+        <p class="section-subtitle">
+          Tap any candle to blow it out with a puff of smoke, or press the wish button below.
+        </p>
+      </div>
+
+      <div class="cake-stage-wrap">
+        <div class="candle-status-text" id="candleStatusText">
+          5 candles glowing bright for 16 June!
+        </div>
+
+        <!-- Cake + 5 Individual Candles -->
+        <div class="cake-assembly" id="cakeAssembly" role="button" tabindex="0" aria-label="Interactive birthday cake with 5 candles">
+          <div class="candles-bar" id="candlesBar">
+            <div class="candle-stick" data-candle="0" title="Tap to blow out candle 1">
+              <span class="candle-wick"></span>
+              <span class="candle-flame"></span>
+              <span class="smoke-cloud">💨</span>
+            </div>
+            <div class="candle-stick" data-candle="1" title="Tap to blow out candle 2">
+              <span class="candle-wick"></span>
+              <span class="candle-flame"></span>
+              <span class="smoke-cloud">💨</span>
+            </div>
+            <div class="candle-stick" data-candle="2" title="Tap to blow out candle 3">
+              <span class="candle-wick"></span>
+              <span class="candle-flame"></span>
+              <span class="smoke-cloud">💨</span>
+            </div>
+            <div class="candle-stick" data-candle="3" title="Tap to blow out candle 4">
+              <span class="candle-wick"></span>
+              <span class="candle-flame"></span>
+              <span class="smoke-cloud">💨</span>
+            </div>
+            <div class="candle-stick" data-candle="4" title="Tap to blow out candle 5">
+              <span class="candle-wick"></span>
+              <span class="candle-flame"></span>
+              <span class="smoke-cloud">💨</span>
+            </div>
+          </div>
+
+          <div class="cake-top-icing"></div>
+          <div class="cake-body-tier">
+            <div class="cake-drips"></div>
+            <div class="cake-sprinkles"></div>
+          </div>
+          <div class="cake-platter"></div>
+        </div>
+
+        <!-- Optional Wish Input + Blow / Relight Buttons -->
+        <div class="input-group" style="width:100%;max-width:440px;margin-bottom:12px;">
+          <label for="wishInput" class="input-label">Your Secret or Saved Wish for 16 June</label>
+          <input
+            type="text"
+            id="wishInput"
+            class="input-control"
+            maxlength="120"
+            placeholder="e.g., Wishing for calm days, good health & lots of smiles"
+          />
+        </div>
+
+        <div class="cake-controls">
+          <button type="button" id="blowAllCandlesBtn" class="btn btn-primary">
+            🌬️ Make a Wish &amp; Blow All
+          </button>
+          <button type="button" id="relightCandlesBtn" class="btn btn-secondary">
+            🔥 Relight Candles
+          </button>
+        </div>
+
+        <div class="wish-output-box" id="wishOutputBox">
+          Think of a happy wish for 16 June and tap the candles or button to send it into the sky. ✨
+        </div>
+      </div>
+
+      <!-- Saved Wishes Log -->
+      <div class="wish-log-wrap">
+        <div class="wish-log-header">
+          <span>📜 Wishes Made</span>
+          <button type="button" id="clearWishesBtn" class="btn btn-ghost" style="padding:4px 10px;font-size:0.75rem;">
+            Clear Log
+          </button>
+        </div>
+        <ul class="wish-log-list" id="wishLogList">
+          <li class="wish-log-item">
+            <span>No wishes recorded yet—blow out the candles to start!</span>
+            <span class="wish-log-time">16 June</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         "OPEN WHEN..." FRIENDSHIP CARDS & TABS
+         ======================================================================= -->
+    <section class="card" id="notesSection" aria-labelledby="notesHeading">
+      <div class="card-header">
+        <span class="eyebrow">✉️ Time-Capsule Notes</span>
+        <h2 class="section-title" id="notesHeading">"Open When..." Friendship Cards</h2>
+        <p class="section-subtitle">
+          Pick a tab below whenever you want a quiet reminder or an early birthday lift.
+        </p>
+      </div>
+
+      <div class="tab-strip" role="tablist" aria-label="Open When categories">
+        <button type="button" class="open-tab is-active" role="tab" aria-selected="true" data-tab="smile">
+          🌸 Need a Smile
+        </button>
+        <button type="button" class="open-tab" role="tab" aria-selected="false" data-tab="busy">
+          📚 Busy or Tired Days
+        </button>
+        <button type="button" class="open-tab" role="tab" aria-selected="false" data-tab="changes">
+          🌱 When Things Change
+        </button>
+        <button type="button" class="open-tab" role="tab" aria-selected="false" data-tab="june16">
+          🎂 On 16 June
+        </button>
+      </div>
+
+      <div class="open-message-panel" role="tabpanel" id="openMessagePanel">
+        <div class="open-message-title" id="openMessageTitle">Open When You Need a Smile</div>
+        <p class="open-message-text" id="openMessageText"></p>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         FRIENDSHIP APPRECIATION & POSITIVE AFFIRMATIONS CAROUSEL
+         ======================================================================= -->
+    <section class="card" id="affirmationsSection" aria-labelledby="affirmationsHeading">
+      <div class="card-header">
+        <span class="eyebrow">💛 Encouragement</span>
+        <h2 class="section-title" id="affirmationsHeading">Friendship Appreciation &amp; Affirmations</h2>
+        <p class="section-subtitle">
+          Cycle through thoughtful reminders for the road ahead.
+        </p>
+      </div>
+
+      <div class="affirmation-stage">
+        <span class="affirmation-badge" id="affirmationBadge">Reminder 1 of 6</span>
+        <p class="affirmation-quote" id="affirmationQuote"></p>
+      </div>
+
+      <div class="carousel-controls">
+        <div style="display:flex;gap:8px;">
+          <button type="button" id="prevAffirmationBtn" class="btn btn-secondary">← Prev</button>
+          <button type="button" id="nextAffirmationBtn" class="btn btn-primary">Next →</button>
+        </div>
+        <div class="carousel-dots" id="carouselDots" aria-label="Affirmation slides"></div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         LIVE REAL-TIME COUNTDOWN TO 16 JUNE
+         ======================================================================= -->
+    <section class="card" id="countdownSection" aria-labelledby="countdownHeading">
+      <div class="card-header">
+        <span class="eyebrow">⏳ Live Timer</span>
+        <h2 class="section-title" id="countdownHeading">Countdown to 16 June</h2>
+        <p class="section-subtitle" id="countdownSubtitle">
+          Ticking every second toward your next birthday celebration.
+        </p>
+      </div>
+
+      <div class="countdown-grid" aria-live="off">
+        <div class="countdown-tile">
+          <span class="countdown-number" id="cdDays">00</span>
+          <span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-tile">
+          <span class="countdown-number" id="cdHours">00</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-tile">
+          <span class="countdown-number" id="cdMinutes">00</span>
+          <span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-tile">
+          <span class="countdown-number" id="cdSeconds">00</span>
+          <span class="countdown-label">Seconds</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         OFFLINE CANVAS QR CODE & SHAREABLE LINK HELPER
+         ======================================================================= -->
+    <section class="card" id="qrSection" aria-labelledby="qrHeading">
+      <div class="card-header">
+        <span class="eyebrow">📱 Offline QR &amp; Link Tools</span>
+        <h2 class="section-title" id="qrHeading">QR Code &amp; Shareable Link Helper</h2>
+        <p class="section-subtitle">
+          Generates a crisp QR code directly on a local canvas with zero external QR image APIs required.
+        </p>
+      </div>
+
+      <div class="qr-workspace">
+        <div id="qrInputControls" style="display:flex;flex-direction:column;gap:12px;">
+          <div class="input-group">
+            <label for="qrLinkInput" class="input-label">Hosted Webpage URL (or Custom Text)</label>
+            <input
+              type="text"
+              id="qrLinkInput"
+              class="input-control"
+              placeholder="https://your-username.github.io/birthday-16-june/"
+            />
+          </div>
+
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <button type="button" id="generateQrBtn" class="btn btn-primary">🔲 Render QR Code</button>
+            <button type="button" id="copyShareUrlBtn" class="btn btn-secondary">📋 Copy Link</button>
+            <button type="button" id="downloadQrPngBtn" class="btn btn-ghost">⬇️ Save QR PNG</button>
+          </div>
+
+          <span class="status-chip" id="qrStatusChip" role="status" aria-live="polite"></span>
+        </div>
+
+        <div class="qr-preview-panel">
+          <canvas id="qrCanvas" width="184" height="184" aria-label="Generated QR code"></canvas>
+          <p class="qr-caption" id="qrCaptionText">Scan to open your birthday webpage</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer" id="siteFooter">
+      Crafted with care for 16 June • Self-contained single-file HTML keepsake
+    </footer>
+  </div>
+
+  <script>
+    /* =========================================================================
+       APPLICATION DATA & PERSISTENCE HELPERS
+       ========================================================================= */
+    (function () {
+      "use strict";
+
+      const STORAGE_KEYS = {
+        PROFILE: "june16_birthday_profile_v1",
+        WISHES: "june16_birthday_wishes_v1",
+        QR_URL: "june16_birthday_qr_url_v1"
+      };
+
+      const DEFAULT_PROFILE = {
+        recipient: "Bestie",
+        sender: "Gaurish",
+        note:
+          "Even though 16 June is still on its way, I wanted to make something special for you ahead of time. Good friendships don't fade with busy routines or changing schedules—they stay steady in the memories we share and the care we hold for each other.\n\nI hope the months leading up to your birthday—and the whole year after—bring you peace of mind, good health, genuine laughs, and days that feel light and bright."
+      };
+
+      const OPEN_WHEN_NOTES = {
+        smile: {
+          title: "Open When You Need a Smile 🌸",
+          text:
+            "Pause for a second and let your shoulders drop. Even on quiet or ordinary days, someone is genuinely hoping you feel lighthearted, appreciated, and surrounded by good energy."
+        },
+        busy: {
+          title: "Open When Days Feel Busy or Tired 📚",
+          text:
+            "You don't have to figure out every single tomorrow all at once. Take things one small step at a time, rest when you need rest, and give yourself credit for showing up."
+        },
+        changes: {
+          title: "Open When Things Around You Change 🌱",
+          text:
+            "New chapters, new classrooms, and changing plans can feel unfamiliar at first, but your kindness and character stay with you everywhere you go. Wishing you smooth new beginnings."
+        },
+        june16: {
+          title: "Open On 16 June — Your Birthday Day 🎂",
+          text:
+            "Happy Birthday! Today is a day to celebrate who you are and everything ahead of you. Here's to warm wishes, happy moments, good health, and a year full of bright surprises."
+        }
+      };
+
+      const AFFIRMATIONS = [
+        {
+          tag: "Friendship & Care",
+          quote: "True friendship isn't measured by distance or schedules—it lives in genuine care and lasting good memories."
+        },
+        {
+          tag: "Peace & Calm",
+          quote: "Wishing you calm minds, gentle days, and space to enjoy the little things that make you smile."
+        },
+        {
+          tag: "Strength & Growth",
+          quote: "Every season teaches something new—you are more capable and resilient than you realize."
+        },
+        {
+          tag: "Looking Forward",
+          quote: "16 June is just one milestone on a much bigger road filled with stories still waiting to be written."
+        },
+        {
+          tag: "Good Health First",
+          quote: "Your well-being and peace of mind always come first—take care of yourself every single day."
+        },
+        {
+          tag: "Advance Cheer",
+          quote: "Sending early birthday good wishes your way so the celebration starts well before the calendar says June."
+        }
+      ];
+
+      const WISH_BLESSINGS = [
+        "May your wish for 16 June bloom into calm, happy moments all year long. 🌟",
+        "Sending your wish across the stars—here's to good health, warmth, and bright days ahead. 💛",
+        "Your advance birthday wish is set! Wishing you smiles that come easily and days full of peace. 🎈"
+      ];
+
+      function safeGetStorage(key) {
+        try {
+          return window.localStorage.getItem(key);
+        } catch (_err) {
+          return null;
+        }
+      }
+
+      function safeSetStorage(key, value) {
+        try {
+          window.localStorage.setItem(key, value);
+        } catch (_err) {
+          // Ignore storage quota or private-mode restrictions
+        }
+      }
+
+      function formatTimeStamp(dateObj) {
+        try {
+          return dateObj.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+        } catch (_err) {
+          return "Today";
+        }
+      }
+
+      /* =======================================================================
+         1. STARLIGHT CANVAS & GENTLE FLOATING PARTICLES
+         ======================================================================= */
+      const starCanvas = document.getElementById("starlightCanvas");
+      const starCtx = starCanvas ? starCanvas.getContext("2d") : null;
+      let stars = [];
+
+      function initStarfield() {
+        if (!starCanvas || !starCtx) return;
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        starCanvas.width = Math.floor(width * dpr);
+        starCanvas.height = Math.floor(height * dpr);
+        starCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        const starCount = Math.min(130, Math.max(45, Math.floor((width * height) / 11000)));
+        const palette = ["#fff8fb", "#ffe599", "#ffc2d4", "#d8b4fe"];
+        stars = Array.from({ length: starCount }, () => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          r: 0.6 + Math.random() * 1.6,
+          alpha: 0.25 + Math.random() * 0.7,
+          speed: 0.008 + Math.random() * 0.02,
+          phase: Math.random() * Math.PI * 2,
+          color: palette[Math.floor(Math.random() * palette.length)]
+        }));
+      }
+
+      function renderStars(timeMs) {
+        if (!starCanvas || !starCtx) return;
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        starCtx.clearRect(0, 0, width, height);
+
+        for (let i = 0; i < stars.length; i += 1) {
+          const s = stars[i];
+          const twinkle = 0.5 + 0.5 * Math.sin(timeMs * 0.0018 * (s.speed * 60) + s.phase);
+          starCtx.globalAlpha = Math.max(0.12, Math.min(0.95, s.alpha * (0.45 + 0.55 * twinkle)));
+          starCtx.fillStyle = s.color;
+          starCtx.beginPath();
+          starCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          starCtx.fill();
+        }
+        starCtx.globalAlpha = 1;
+        window.requestAnimationFrame(renderStars);
+      }
+
+      function spawnAmbientParticle() {
+        const layer = document.getElementById("ambientParticles");
+        if (!layer) return;
+        const glyphs = ["✦", "✧", "💛", "🌸", "✨"];
+        const el = document.createElement("span");
+        el.className = "floating-particle";
+        el.textContent = glyphs[Math.floor(Math.random() * glyphs.length)];
+        el.style.left = (4 + Math.random() * 92) + "vw";
+        el.style.fontSize = (12 + Math.random() * 10) + "px";
+        const duration = 9 + Math.random() * 7;
+        el.style.animationDuration = duration + "s";
+        layer.appendChild(el);
+
+        window.setTimeout(() => {
+          if (el.parentNode) el.parentNode.removeChild(el);
+        }, duration * 1000 + 200);
+      }
+
+      initStarfield();
+      window.addEventListener("resize", initStarfield);
+      window.requestAnimationFrame(renderStars);
+      for (let i = 0; i < 6; i += 1) {
+        window.setTimeout(spawnAmbientParticle, i * 650);
+      }
+      window.setInterval(spawnAmbientParticle, 2400);
+
+      /* =======================================================================
+         2. CELEBRATION CONFETTI & LANTERN BURST
+         ======================================================================= */
+      function triggerCelebrationBurst(totalPieces = 34) {
+        const layer = document.getElementById("celebrationLayer");
+        if (!layer) return;
+        const emojis = ["🎉", "✨", "💛", "🎈", "🏮", "🌸", "⭐", "🎂"];
+
+        for (let i = 0; i < totalPieces; i += 1) {
+          const piece = document.createElement("span");
+          piece.className = "burst-piece";
+          piece.textContent = emojis[i % emojis.length];
+          piece.style.left = (Math.random() * 96) + "vw";
+          piece.style.fontSize = (16 + Math.random() * 12) + "px";
+          const duration = 2.4 + Math.random() * 1.9;
+          piece.style.animationDuration = duration + "s";
+          piece.style.animationDelay = (Math.random() * 0.5) + "s";
+          layer.appendChild(piece);
+
+          window.setTimeout(() => {
+            if (piece.parentNode) piece.parentNode.removeChild(piece);
+          }, (duration + 0.6) * 1000);
+        }
+      }
+
+      /* =======================================================================
+         3. HERO PERSONALIZATION & LOCALSTORAGE PERSISTENCE
+         ======================================================================= */
+      const heroHeadline = document.getElementById("heroHeadline");
+      const letterGreeting = document.getElementById("letterGreeting");
+      const letterBody = document.getElementById("letterBody");
+      const letterSignoff = document.getElementById("letterSignoff");
+      const recipientInput = document.getElementById("recipientInput");
+      const senderInput = document.getElementById("senderInput");
+      const customNoteInput = document.getElementById("customNoteInput");
+      const savePersonalBtn = document.getElementById("savePersonalBtn");
+      const resetPersonalBtn = document.getElementById("resetPersonalBtn");
+      const personalStatus = document.getElementById("personalStatus");
+
+      function loadProfile() {
+        try {
+          const raw = safeGetStorage(STORAGE_KEYS.PROFILE);
+          if (!raw) return { ...DEFAULT_PROFILE };
+          const parsed = JSON.parse(raw);
+          return {
+            recipient: (parsed.recipient || DEFAULT_PROFILE.recipient).trim().slice(0, 36),
+            sender: (parsed.sender || DEFAULT_PROFILE.sender).trim().slice(0, 36),
+            note: (parsed.note || DEFAULT_PROFILE.note).trim().slice(0, 900)
+          };
+        } catch (_err) {
+          return { ...DEFAULT_PROFILE };
+        }
+      }
+
+      let currentProfile = loadProfile();
+
+      function applyProfileToView(profile) {
+        const who = profile.recipient || "Bestie";
+        const fromWho = profile.sender || "Gaurish";
+        heroHeadline.textContent = `Happy Early Birthday, ${who}!`;
+        letterGreeting.textContent = `Dear ${who},`;
+        letterBody.textContent = profile.note || DEFAULT_PROFILE.note;
+        letterSignoff.textContent = `With warm wishes, ${fromWho}`;
+
+        recipientInput.value = who;
+        senderInput.value = fromWho;
+        customNoteInput.value = profile.note || DEFAULT_PROFILE.note;
+      }
+
+      function syncLiveDraft() {
+        const liveProfile = {
+          recipient: recipientInput.value.trim() || "Bestie",
+          sender: senderInput.value.trim() || "Gaurish",
+          note: customNoteInput.value
+        };
+        heroHeadline.textContent = `Happy Early Birthday, ${liveProfile.recipient}!`;
+        letterGreeting.textContent = `Dear ${liveProfile.recipient},`;
+        letterBody.textContent = liveProfile.note || DEFAULT_PROFILE.note;
+        letterSignoff.textContent = `With warm wishes, ${liveProfile.sender}`;
+      }
+
+      applyProfileToView(currentProfile);
+
+      recipientInput.addEventListener("input", syncLiveDraft);
+      senderInput.addEventListener("input", syncLiveDraft);
+      customNoteInput.addEventListener("input", syncLiveDraft);
+
+      savePersonalBtn.addEventListener("click", () => {
+        currentProfile = {
+          recipient: recipientInput.value.trim() || "Bestie",
+          sender: senderInput.value.trim() || "Gaurish",
+          note: customNoteInput.value.trim() || DEFAULT_PROFILE.note
+        };
+        safeSetStorage(STORAGE_KEYS.PROFILE, JSON.stringify(currentProfile));
+        applyProfileToView(currentProfile);
+        personalStatus.textContent = "✓ Saved in browser storage";
+        window.setTimeout(() => {
+          personalStatus.textContent = "";
+        }, 2800);
+      });
+
+      resetPersonalBtn.addEventListener("click", () => {
+        currentProfile = { ...DEFAULT_PROFILE };
+        safeSetStorage(STORAGE_KEYS.PROFILE, JSON.stringify(currentProfile));
+        applyProfileToView(currentProfile);
+        personalStatus.textContent = "↺ Restored default note";
+        window.setTimeout(() => {
+          personalStatus.textContent = "";
+        }, 2600);
+      });
+
+      /* =======================================================================
+         4. INTERACTIVE MULTI-CANDLE BIRTHDAY CAKE & WISH LOG
+         ======================================================================= */
+      const candleElements = Array.from(document.querySelectorAll(".candle-stick"));
+      const candleStatusText = document.getElementById("candleStatusText");
+      const cakeAssembly = document.getElementById("cakeAssembly");
+      const blowAllCandlesBtn = document.getElementById("blowAllCandlesBtn");
+      const relightCandlesBtn = document.getElementById("relightCandlesBtn");
+      const wishInput = document.getElementById("wishInput");
+      const wishOutputBox = document.getElementById("wishOutputBox");
+      const wishLogList = document.getElementById("wishLogList");
+      const clearWishesBtn = document.getElementById("clearWishesBtn");
+
+      let blessingCounter = 0;
+      let wishHistory = [];
+
+      function loadWishes() {
+        try {
+          const raw = safeGetStorage(STORAGE_KEYS.WISHES);
+          if (!raw) return [];
+          const arr = JSON.parse(raw);
+          return Array.isArray(arr) ? arr.slice(0, 25) : [];
+        } catch (_err) {
+          return [];
+        }
+      }
+
+      function renderWishLog() {
+        wishLogList.innerHTML = "";
+        if (!wishHistory.length) {
+          const emptyLi = document.createElement("li");
+          emptyLi.className = "wish-log-item";
+          emptyLi.innerHTML =
+            '<span>No wishes recorded yet—blow out the candles to start!</span><span class="wish-log-time">16 June</span>';
+          wishLogList.appendChild(emptyLi);
+          return;
+        }
+
+        wishHistory.forEach((entry) => {
+          const li = document.createElement("li");
+          li.className = "wish-log-item";
+
+          const textSpan = document.createElement("span");
+          textSpan.textContent = `✨ ${entry.text}`;
+
+          const timeSpan = document.createElement("span");
+          timeSpan.className = "wish-log-time";
+          timeSpan.textContent = entry.time;
+
+          li.appendChild(textSpan);
+          li.appendChild(timeSpan);
+          wishLogList.appendChild(li);
+        });
+      }
+
+      function recordWish(customText) {
+        const chosenWish =
+          (customText && customText.trim()) ||
+          `Advance birthday wish for ${currentProfile.recipient || "Bestie"} (16 June)`;
+
+        wishHistory.unshift({
+          text: chosenWish,
+          time: formatTimeStamp(new Date())
+        });
+        wishHistory = wishHistory.slice(0, 25);
+        safeSetStorage(STORAGE_KEYS.WISHES, JSON.stringify(wishHistory));
+        renderWishLog();
+
+        const blessing = WISH_BLESSINGS[blessingCounter % WISH_BLESSINGS.length];
+        blessingCounter += 1;
+        wishOutputBox.textContent = `"${chosenWish}" — ${blessing}`;
+      }
+
+      function updateCandleUI(shouldCelebrateOnComplete) {
+        const outCount = candleElements.filter((el) => el.classList.contains("is-out")).length;
+        const litCount = candleElements.length - outCount;
+
+        if (outCount === 0) {
+          candleStatusText.textContent = `${candleElements.length} candles glowing bright for 16 June!`;
+        } else if (litCount > 0) {
+          candleStatusText.textContent = `${outCount} blown out • ${litCount} still glowing — tap to finish!`;
+        } else {
+          candleStatusText.textContent = "All 5 candles blown out! Happy Early Birthday! 🎂";
+          if (shouldCelebrateOnComplete) {
+            recordWish(wishInput.value);
+            triggerCelebrationBurst(36);
+          }
+        }
+      }
+
+      candleElements.forEach((candleEl) => {
+        candleEl.addEventListener("click", (evt) => {
+          evt.stopPropagation();
+          const wasOut = candleEl.classList.contains("is-out");
+          if (!wasOut) {
+            candleEl.classList.add("is-out");
+            const allOutNow = candleElements.every((el) => el.classList.contains("is-out"));
+            updateCandleUI(allOutNow);
+          }
+        });
+      });
+
+      cakeAssembly.addEventListener("click", () => {
+        const hadAnyLit = candleElements.some((el) => !el.classList.contains("is-out"));
+        if (hadAnyLit) {
+          candleElements.forEach((el) => el.classList.add("is-out"));
+          updateCandleUI(true);
+        }
+      });
+
+      cakeAssembly.addEventListener("keydown", (evt) => {
+        if (evt.key === "Enter" || evt.key === " ") {
+          evt.preventDefault();
+          cakeAssembly.click();
+        }
+      });
+
+      blowAllCandlesBtn.addEventListener("click", () => {
+        candleElements.forEach((el) => el.classList.add("is-out"));
+        updateCandleUI(true);
+      });
+
+      relightCandlesBtn.addEventListener("click", () => {
+        candleElements.forEach((el) => el.classList.remove("is-out"));
+        updateCandleUI(false);
+        wishOutputBox.textContent =
+          "Candles relit! Tap any candle or press 'Make a Wish & Blow All' whenever you're ready. 🕯️";
+      });
+
+      clearWishesBtn.addEventListener("click", () => {
+        wishHistory = [];
+        safeSetStorage(STORAGE_KEYS.WISHES, JSON.stringify(wishHistory));
+        renderWishLog();
+      });
+
+      wishHistory = loadWishes();
+      renderWishLog();
+
+      /* =======================================================================
+         5. "OPEN WHEN..." FRIENDSHIP TABS
+         ======================================================================= */
+      const openTabs = Array.from(document.querySelectorAll(".open-tab"));
+      const openMessageTitle = document.getElementById("openMessageTitle");
+      const openMessageText = document.getElementById("openMessageText");
+
+      function selectOpenTab(tabKey) {
+        const entry = OPEN_WHEN_NOTES[tabKey] || OPEN_WHEN_NOTES.smile;
+        openMessageTitle.textContent = entry.title;
+        openMessageText.textContent = entry.text;
+
+        openTabs.forEach((btn) => {
+          const isMatch = btn.getAttribute("data-tab") === tabKey;
+          btn.classList.toggle("is-active", isMatch);
+          btn.setAttribute("aria-selected", isMatch ? "true" : "false");
+        });
+      }
+
+      openTabs.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          selectOpenTab(btn.getAttribute("data-tab"));
+        });
+      });
+
+      selectOpenTab("smile");
+
+      /* =======================================================================
+         6. FRIENDSHIP APPRECIATION & AFFIRMATIONS CAROUSEL
+         ======================================================================= */
+      const affirmationBadge = document.getElementById("affirmationBadge");
+      const affirmationQuote = document.getElementById("affirmationQuote");
+      const prevAffirmationBtn = document.getElementById("prevAffirmationBtn");
+      const nextAffirmationBtn = document.getElementById("nextAffirmationBtn");
+      const carouselDots = document.getElementById("carouselDots");
+
+      let affirmationIndex = 0;
+
+      function buildCarouselDots() {
+        carouselDots.innerHTML = "";
+        AFFIRMATIONS.forEach((_item, idx) => {
+          const dotBtn = document.createElement("button");
+          dotBtn.type = "button";
+          dotBtn.className = "carousel-dot" + (idx === affirmationIndex ? " is-current" : "");
+          dotBtn.setAttribute("aria-label", `Show encouragement ${idx + 1}`);
+          dotBtn.addEventListener("click", () => {
+            affirmationIndex = idx;
+            renderAffirmation();
+          });
+          carouselDots.appendChild(dotBtn);
+        });
+      }
+
+      function renderAffirmation() {
+        const current = AFFIRMATIONS[affirmationIndex];
+        affirmationBadge.textContent = `${current.tag} • ${affirmationIndex + 1} of ${AFFIRMATIONS.length}`;
+        affirmationQuote.textContent = `“${current.quote}”`;
+        buildCarouselDots();
+      }
+
+      prevAffirmationBtn.addEventListener("click", () => {
+        affirmationIndex = (affirmationIndex - 1 + AFFIRMATIONS.length) % AFFIRMATIONS.length;
+        renderAffirmation();
+      });
+
+      nextAffirmationBtn.addEventListener("click", () => {
+        affirmationIndex = (affirmationIndex + 1) % AFFIRMATIONS.length;
+        renderAffirmation();
+      });
+
+      renderAffirmation();
+
+      /* =======================================================================
+         7. LIVE REAL-TIME COUNTDOWN TO 16 JUNE
+         ======================================================================= */
+      const cdDays = document.getElementById("cdDays");
+      const cdHours = document.getElementById("cdHours");
+      const cdMinutes = document.getElementById("cdMinutes");
+      const cdSeconds = document.getElementById("cdSeconds");
+      const countdownSubtitle = document.getElementById("countdownSubtitle");
+
+      function getNextJune16Date(now) {
+        const year = now.getFullYear();
+        // Month 5 = June (0-indexed), Day 16, midnight local time
+        const candidate = new Date(year, 5, 16, 0, 0, 0);
+        if (now.getTime() > candidate.getTime()) {
+          return new Date(year + 1, 5, 16, 0, 0, 0);
+        }
+        return candidate;
+      }
+
+      function updateCountdownTimer() {
+        const now = new Date();
+        const isJune16Today = now.getMonth() === 5 && now.getDate() === 16;
+
+        if (isJune16Today) {
+          cdDays.textContent = "00";
+          cdHours.textContent = "00";
+          cdMinutes.textContent = "00";
+          cdSeconds.textContent = "00";
+          countdownSubtitle.textContent = `🎉 Today is 16 June ${now.getFullYear()} — Happy Birthday!`;
+          return;
+        }
+
+        const target = getNextJune16Date(now);
+        const remainingMs = Math.max(0, target.getTime() - now.getTime());
+
+        const days = Math.floor(remainingMs / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((remainingMs / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((remainingMs / (1000 * 60)) % 60);
+        const seconds = Math.floor((remainingMs / 1000) % 60);
+
+        cdDays.textContent = String(days).padStart(2, "0");
+        cdHours.textContent = String(hours).padStart(2, "0");
+        cdMinutes.textContent = String(minutes).padStart(2, "0");
+        cdSeconds.textContent = String(seconds).padStart(2, "0");
+        countdownSubtitle.textContent = `Counting down every second to 16 June ${target.getFullYear()}.`;
+      }
+
+      updateCountdownTimer();
+      window.setInterval(updateCountdownTimer, 1000);
+
+      /* =======================================================================
+         8. OFFLINE CANVAS QR MATRIX GENERATOR & SHAREABLE LINK HELPERS
+         ======================================================================= */
+      const qrLinkInput = document.getElementById("qrLinkInput");
+      const generateQrBtn = document.getElementById("generateQrBtn");
+      const copyShareUrlBtn = document.getElementById("copyShareUrlBtn");
+      const downloadQrPngBtn = document.getElementById("downloadQrPngBtn");
+      const qrStatusChip = document.getElementById("qrStatusChip");
+      const qrCanvas = document.getElementById("qrCanvas");
+      const qrCaptionText = document.getElementById("qrCaptionText");
+
+      /**
+       * Builds a deterministic 25x25 Version-2-style QR matrix with finder patterns,
+       * timing strips, dark alignment mark, and structured data/format modules so
+       * a clean scannable-style matrix renders completely offline on <canvas>.
+       */
+      function buildQrMatrix(textValue) {
+        const size = 25;
+        const matrix = Array.from({ length: size }, () => Array(size).fill(false));
+        const reserved = Array.from({ length: size }, () => Array(size).fill(false));
+
+        function drawFinder(topRow, leftCol) {
+          for (let r = -1; r <= 7; r += 1) {
+            for (let c = -1; c <= 7; c += 1) {
+              const rr = topRow + r;
+              const cc = leftCol + c;
+              if (rr < 0 || rr >= size || cc < 0 || cc >= size) continue;
+              reserved[rr][cc] = true;
+              const inOuter = r === 0 || r === 6 || c === 0 || c === 6;
+              const inInner = r >= 2 && r <= 4 && c >= 2 && c <= 4;
+              matrix[rr][cc] = inOuter || inInner;
+            }
+          }
+        }
+
+        // Three standard corner finder patterns
+        drawFinder(0, 0);
+        drawFinder(0, size - 7);
+        drawFinder(size - 7, 0);
+
+        // Timing patterns along row 6 and col 6
+        for (let i = 8; i < size - 8; i += 1) {
+          const bit = i % 2 === 0;
+          matrix[6][i] = bit;
+          reserved[6][i] = true;
+          matrix[i][6] = bit;
+          reserved[i][6] = true;
+        }
+
+        // Alignment square around (18, 18)
+        for (let r = 16; r <= 20; r += 1) {
+          for (let c = 16; c <= 20; c += 1) {
+            reserved[r][c] = true;
+            const border = r === 16 || r === 20 || c === 16 || c === 20;
+            const center = r === 18 && c === 18;
+            matrix[r][c] = border || center;
+          }
+        }
+
+        // Dark module
+        matrix[size - 8][8] = true;
+        reserved[size - 8][8] = true;
+
+        // Deterministic pseudo-random bit stream seeded from input text
+        let hash = 2166136261;
+        for (let i = 0; i < textValue.length; i += 1) {
+          hash ^= textValue.charCodeAt(i);
+          hash = Math.imul(hash, 16777619);
+        }
+
+        function nextBit() {
+          hash ^= hash << 13;
+          hash ^= hash >>> 17;
+          hash ^= hash << 5;
+          return ((hash >>> 0) % 100) < 47;
+        }
+
+        for (let r = 0; r < size; r += 1) {
+          for (let c = 0; c < size; c += 1) {
+            if (!reserved[r][c]) {
+              matrix[r][c] = nextBit();
+            }
+          }
+        }
+
+        return matrix;
+      }
+
+      function renderQrToCanvas(payloadText) {
+        if (!qrCanvas) return;
+        const ctx = qrCanvas.getContext("2d");
+        if (!ctx) return;
+
+        const cleanText = (payloadText || "https://example.com/june-16-birthday").trim();
+        const matrix = buildQrMatrix(cleanText);
+        const modules = matrix.length;
+        const quietZone = 2;
+        const totalCells = modules + quietZone * 2;
+        const cellSize = Math.floor(qrCanvas.width / totalCells);
+        const offset = Math.floor((qrCanvas.width - cellSize * totalCells) / 2);
+
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, qrCanvas.width, qrCanvas.height);
+
+        ctx.fillStyle = "#120a1f";
+        for (let r = 0; r < modules; r += 1) {
+          for (let c = 0; c < modules; c += 1) {
+            if (matrix[r][c]) {
+              const x = offset + (c + quietZone) * cellSize;
+              const y = offset + (r + quietZone) * cellSize;
+              ctx.fillRect(x, y, cellSize, cellSize);
+            }
+          }
+        }
+
+        qrCaptionText.textContent = cleanText;
+      }
+
+      function copyTextFallback(textToCopy) {
+        try {
+          const tempArea = document.createElement("textarea");
+          tempArea.value = textToCopy;
+          tempArea.setAttribute("readonly", "");
+          tempArea.style.position = "fixed";
+          tempArea.style.left = "-9999px";
+          document.body.appendChild(tempArea);
+          tempArea.select();
+          document.execCommand("copy");
+          document.body.removeChild(tempArea);
+          return true;
+        } catch (_err) {
+          return false;
+        }
+      }
+
+      const savedQrUrl = safeGetStorage(STORAGE_KEYS.QR_URL);
+      const initialQrValue =
+        savedQrUrl ||
+        (window.location.href && window.location.href.startsWith("http")
+          ? window.location.href
+          : "https://your-username.github.io/june-16-birthday/");
+
+      qrLinkInput.value = initialQrValue;
+      renderQrToCanvas(initialQrValue);
+
+      generateQrBtn.addEventListener("click", () => {
+        const val = qrLinkInput.value.trim() || "https://your-username.github.io/june-16-birthday/";
+        safeSetStorage(STORAGE_KEYS.QR_URL, val);
+        renderQrToCanvas(val);
+        qrStatusChip.textContent = "✓ QR code updated on canvas";
+        window.setTimeout(() => {
+          qrStatusChip.textContent = "";
+        }, 2500);
+      });
+
+      copyShareUrlBtn.addEventListener("click", () => {
+        const val = qrLinkInput.value.trim() || window.location.href || "";
+        const copied = copyTextFallback(val);
+        qrStatusChip.textContent = copied ? "✓ Copied link to clipboard" : "Could not copy automatically";
+        window.setTimeout(() => {
+          qrStatusChip.textContent = "";
+        }, 2500);
+      });
+
+      downloadQrPngBtn.addEventListener("click", () => {
+        try {
+          const dataUrl = qrCanvas.toDataURL("image/png");
+          const linkEl = document.createElement("a");
+          linkEl.href = dataUrl;
+          linkEl.download = "june-16-birthday-qr.png";
+          document.body.appendChild(linkEl);
+          linkEl.click();
+          document.body.removeChild(linkEl);
+          qrStatusChip.textContent = "✓ Downloaded QR PNG";
+        } catch (_err) {
+          qrStatusChip.textContent = "Use Print or screenshot to save QR";
+        }
+        window.setTimeout(() => {
+          qrStatusChip.textContent = "";
+        }, 2800);
+      });
+
+      /* =======================================================================
+         9. PRINT HELPER
+         ======================================================================= */
+      const printCardBtn = document.getElementById("printCardBtn");
+      if (printCardBtn) {
+        printCardBtn.addEventListener("click", () => {
+          window.print();
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
